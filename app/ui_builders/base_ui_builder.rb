@@ -5,7 +5,6 @@ class BaseUIBuilder
   ENCODE = true
 
   def initialize(turbo_frame_id = nil)
-    tailwind_support
     @state = OpenStruct.new()
     @params = OpenStruct.new()
     @turbo_frame_id = turbo_frame_id
@@ -19,17 +18,6 @@ class BaseUIBuilder
     (@@class_state[self.class] || []).each do |attr, default|
       @state.send("#{attr}=", default.dup)
     end
-  end
-
-  def tailwind_support
-    p = __FILE__.gsub("ui_builders/base_ui_builder.rb","views/**/*.slim")
-    puts '-'*80
-    puts "Adding Tailwind Support"
-    puts "/config/tailwind.config.js"
-    puts "content: ["
-    puts "   #{p.inspect}"
-    puts "}"
-    puts '-'*80
   end
 
   def before_render

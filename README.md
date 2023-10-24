@@ -16,7 +16,20 @@ If bundler is not being used to manage dependencies, install the gem by executin
 
 ## Usage
 
-TODO: Write usage instructions here
+## Post Install Configuration
+
+### Add gem path to content Tailwind watches
+
+```
+const execSync = require('child_process').execSync;
+const ui_builder_path = execSync('bundle show ui_builder', { encoding: 'utf-8' });
+
+
+module.exports = {
+  content: [
+    ui_builder_path.trim() + '/app/views/**/*.slim',
+  ],
+```
 
 ## Development
 
