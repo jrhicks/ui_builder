@@ -21,6 +21,6 @@ turbo-frame[id=turbo_frame_id data-turbo-action="advance"]
         div.bg-gray-200.rounded-t-lg.p-4.font-medium
           = "#{params.variation.underscore}.html.slim"
         pre.mt-0.highlight.bg-ghdark.text-sm.p-4.overflow-x-auto.rounded-b-lg
-            - slim_source = File.read(this.slim_file_path)
-            = rouge 'slim', slim_source
+          - slim_source = File.read(this.slim_file_path)
+          = rouge 'slim', slim_source
          

@@ -16,6 +16,7 @@ class ExampleUIBuilder < BaseUIBuilder
     @name.titleize
   end
 
+  # Assumes this example app is nested inside the gem's examples folder
   def partial
     "/examples/#{@params.name}/#{@params.variation.underscore}"
   end
