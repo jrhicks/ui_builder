@@ -1,3 +1,6 @@
+const execSync = require('child_process').execSync;
+const ui_builder_path = execSync('bundle show ui_builder', { encoding: 'utf-8' });
+
 const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
@@ -6,7 +9,7 @@ module.exports = {
     './app/helpers/**/*.rb',
     './app/javascript/**/*.js',
     './app/views/**/*.{erb,haml,html,slim}',
-    '../../app/views/**/*.slim'
+    ui_builder_path.trim() + '/app/views/**/*.slim',
   ],
   theme: {
     extend: {
