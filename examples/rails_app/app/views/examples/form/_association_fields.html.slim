@@ -1,0 +1,9 @@
+= render FormUIBuilder.new("association_fields") do |fc|
+  - fc.mode :edit
+  - fc.section "Vehicle", width: 2 do |s|
+    - s.color "gray"
+    - s.select :vehicle_make_id, label: "Make" do |f|
+      - f.options VehicleMake.all
+    - s.select :vehicle_model_id, label: "Model" do |f|
+      - f.options -> r { VehicleModel.where(vehicle_make_id: r.vehicle_make_id) }
+

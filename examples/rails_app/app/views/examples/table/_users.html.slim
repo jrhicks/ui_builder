@@ -1,0 +1,8 @@
+= render TableUIBuilder.new("users_table") do |t|
+  - t.scope User.all
+  - t.action :view
+  - t.col :first_name
+  - t.col :last_name
+  - t.col :email
+
+

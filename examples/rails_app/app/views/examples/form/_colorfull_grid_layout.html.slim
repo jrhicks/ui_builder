@@ -1,0 +1,30 @@
+= render FormUIBuilder.new("colorfull_grid_layout") do |fc|
+  - fc.label_above true
+  - fc.section "Information", width: 3 do |s|
+    - s.default_field_width 1
+    - s.color :indigo
+    - s.string :name, width: 3
+    - s.string :job_title
+    - s.string :company, width: 2
+    - s.string :work_phone
+    - s.string :fax
+    - s.string :mobile
+    - s.string :email
+    - s.string :website, width: 2
+    - s.text :address, width: 3
+
+  - fc.section "Status", width: 1 do |s|
+    - s.default_field_width 1
+    - s.color :yellow
+    - s.string :owner 
+    - s.string :status
+    - s.string :source
+    - s.string :industry
+    - s.string :employee_count, label: "# Employees"
+    - s.string :annual_revenue, label: "Annual Revenue ($)"
+
+  - fc.section "Additional", width: 4 do |s|
+    - s.default_field_width 1
+    - s.color :indigo
+    - s.text :notes, width: 3
+    - s.text :attachment

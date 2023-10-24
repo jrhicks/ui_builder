@@ -1,0 +1,4 @@
+= render ChartUIBuilder.new("vertical_column") do |c|
+  - c.data VehicleModelView.all
+  - c.group_by :vehicle_make_name
+

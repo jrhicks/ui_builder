@@ -1,0 +1,18 @@
+h1.text-2xl 
+  | Form UI Builder
+
+= render ExampleUIBuilder.new("form_example_1") do |e|
+  - e.name "form"
+  - e.variation "colorfull_grid_layout"
+
+= render ExampleUIBuilder.new("form_example_2") do |e|
+  - e.name "form"
+  - e.variation "edit_mode"
+
+= render ExampleUIBuilder.new("form_example_3") do |e|
+  - e.name "form"
+  - e.variation "conditional_fields"
+
+= render ExampleUIBuilder.new("form_example_4") do |e|
+  - e.name "form"
+  - e.variation "association_fields"

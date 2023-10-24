@@ -1,0 +1,9 @@
+= render FormUIBuilder.new("conditional_fields") do |fc|
+  - fc.mode :edit
+  - fc.section "Signup", width: 2 do |s|
+    - s.color "gray"
+    - s.string :first_name
+    - s.string :last_name
+    - s.select :marketing_source, options: ["Google", "Facebook", "Other"]
+    - s.string :marketing_source_other, :hide, label: 'Other' do |f|
+      - f.show_if -> r { r.marketing_source == 'Other' }

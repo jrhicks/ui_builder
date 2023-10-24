@@ -1,0 +1,13 @@
+h1.text-2xl 
+  | Tabs UI Builder
+
+= render ExampleUIBuilder.new("tab1") do |e|
+  - e.name "tabs"
+  - e.variation "tabs_with_underline"
+  - e.klass "h-96"                  
+
+= render ExampleUIBuilder.new("tab2") do |e|
+  - e.name "tabs"
+  - e.variation "tabs_with_badges"
+  - e.klass "h-96"
+

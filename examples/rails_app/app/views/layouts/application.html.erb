@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BuildersExample</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <!-- set background to lite grey -->
+  <body class="bg-gray-50">
+    <style nonce=true>
+      <%=Rouge::Themes::Base16.mode(:dark).render(scope: '.highlight')%>
+    </style>
+    <main class="container mx-auto mt-10 px-5 flex">
+      <!-- side navigation bar -->
+      <!-- don't let big second column squish this one -->
+      <div class="w-1/6 flex-shrink-0">
+        <nav class="flex flex-col space-y-2">
+        <%= link_to "Overview", root_path, class: "text-blue-500 hover:text-blue-700" %>
+        <%= link_to "Counter", counter_examples_path, class: "text-blue-500 hover:text-blue-700" %>
+        <%= link_to "Tabs", tabs_examples_path, class: "text-blue-500 hover:text-blue-700" %>
+        <%= link_to "Table", table_examples_path, class: "text-blue-500 hover:text-blue-700" %>
+        <%= link_to "Form", form_examples_path, class: "text-blue-500 hover:text-blue-700" %>        
+        <%= link_to "Chart", chart_examples_path, class: "text-blue-500 hover:text-blue-700" %>        
+
+        </nav>
+      </div>
+      <div class="w-full">
+        <%= yield %> 
+      </div>
+    </main>
+  </body>
+</html>

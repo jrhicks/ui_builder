@@ -1,0 +1,12 @@
+h1.text-2xl 
+  | Table UI Builder
+
+= render ExampleUIBuilder.new("table_example_1") do |e|
+  - e.name "table"
+  - e.variation "users"
+
+
+= render ExampleUIBuilder.new("table_example_2") do |e|
+  - e.name "table"
+  - e.variation "users_and_accounts"
+  
