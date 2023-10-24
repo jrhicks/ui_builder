@@ -1,0 +1,26 @@
+turbo-frame[id=turbo_frame_id data-turbo-action="advance"]
+  div[class=params.klass]
+    div.pt-4.pb-4.flex
+      div.flex.items-center
+        = params.variation.titleize
+      div.ml-auto
+        span.isolate.inline-flex.rounded-md.shadow-sm
+        = link_to this.new_state(show: 'preview')
+          button.relative.inline-flex.items-center.gap-x-1.5.rounded-l-md.bg-white.px-3.py-2.text-sm.font-semibold.text-gray-900.ring-1.ring-inset.ring-gray-300.hover:bg-gray-50.focus:z-10[type="button"]
+            | Preview
+        
+        = link_to this.new_state(show: 'code')
+          button.relative.inline-flex.items-center.gap-x-1.5.rounded-r-md.bg-white.px-3.py-2.text-sm.font-semibold.text-gray-900.ring-1.ring-inset.ring-gray-300.hover:bg-gray-50.focus:z-10[type="button"]
+            | Code
+
+    div.pb-4.flex-grow.items-start
+      - if state.show == 'preview'
+        div.bg-white.shadow.rounded-lg.overflow-x-auto.p-4
+          = render this.partial
+      - else
+        div.bg-gray-200.rounded-t-lg.p-4.font-medium
+          = "#{params.variation.underscore}.html.slim"
+        pre.mt-0.highlight.bg-ghdark.text-sm.p-4.overflow-x-auto.rounded-b-lg
+            - slim_source = File.read(this.slim_file_path)
+            = rouge 'slim', slim_source
+         

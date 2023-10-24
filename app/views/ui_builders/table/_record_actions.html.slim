@@ -1,0 +1,15 @@
+div[class="hidden sm:inline-flex space-x-1"]
+  - this.params.actions.each do |action|  
+    = link_to this.action_url(action:, record:), class: 'inline-flex items-center px-2.5 py-1.5 border border-gray-300 text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500' do
+      = action.title
+
+div[data-controller="dropdown" class="sm:hidden relative inline-block text-left"]
+  div
+    button[data-action="click->dropdown#toggle" class='inline-flex items-center px-2.5 py-1.5 border border-gray-300 text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500' id="menu-button" aria-expanded="true" aria-haspopup="true"]
+      svg[class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"]
+        path[stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"]
+  div[role="menu" data-dropdown-target="menu" class="absolute hidden z-10 mt-2 w-56 origin-top-left rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1"]
+    div[class="py-1" role="none"]
+      - this.params.actions.each do |action|
+        = link_to this.action_url(action: action, record: record), class: "text-gray-700 block px-4 py-2 text-sm", role: "menuitem", tabindex: "-1" do
+          = action.title  

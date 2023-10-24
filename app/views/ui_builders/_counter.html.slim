@@ -1,0 +1,7 @@
+turbo-frame[id=turbo_frame_id data-turbo-action="advance"]
+  div
+    = link_to this.new_state(count: state.count.to_i-1)
+      - "-"
+    = state.count
+    = link_to this.new_state(count: state.count.to_i+1)
+      - "+"

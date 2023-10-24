@@ -1,0 +1,34 @@
+- # DYNAMIC TAILWIND CLASSES
+- # col-span-1 col-span-2 col-span-3 col-span-4
+- # grid-cols-1 grid-cols-2 grid-cols-3 grid-cols-4
+- # opacity-75 
+
+= turbo_frame_tag(turbo_frame_id) do
+  = form_with html: {"data-controller"=>"turbo-component-form", "data-turbo-component-form-target"=>"form", "data-tfid"=>turbo_frame_id, "data-preserve-scroll"=>true} do |form|
+    div[class="grid grid-cols-4 grid-flow-row gap-2"]
+      - params.sections.each do |s|
+        div[class="text-sm col-span-#{s.width} flex-row"]
+          div[class="p-1 pl-2 rounded-t-lg #{s.dark_color} text-white font-bold"]
+            = s.name
+          div[class="grid grid-cols-#{s.width} gap-x-2 gap-y-0.5"]
+            - s.fields.each do |f|
+              div[class="col-span-#{f.params.width}"]
+                div[data-turbo-component-form-target="field" data-name="#{f.params.name}" data-mode=f.params.mode data-dynamic=f.is_dynamic.inspect]
+                  - if f.should_show?
+                    div[class="p-0.5 pl-2 font-bold #{s.light_color}"]
+                      = f.params.label
+                    div[class="p-0.5 pl-2 #{s.medium_color}" data-name="#{f.params.name}"]
+                      - if params.mode == :edit
+                        - if f.params.type == 'select'
+                          = form.select f.params.name, f.params.options, {include_blank: true, selected: params.model.send(f.params.name)}, { :class => "w-full p-0.5 pl-2", "data-action"=>"change->turbo-component-form#inputChanged", "data-prevent-morph"=>!f.is_dynamic }
+                        - if f.params.type == 'string'
+                          = form.text_field f.params.name, as: f.params.type,  class: "w-full p-0.5 pl-2", value: params.model.send(f.params.name), "data-action"=>"change->turbo-component-form#inputChanged", "data-prevent-morph"=>!f.is_dynamic
+                        - if f.params.type == 'text'
+                          = form.text_area f.params.name, as: f.params.type,  class: "w-full p-0.5 pl-2", rows: 3, value: params.model.send(f.params.name), "data-action"=>"change->turbo-component-form#inputChanged", "data-prevent-morph"=>!f.is_dynamic
+                      - else
+                        div[class="h-6"]
+                            = params.model.send(f.params.name)
+
+                  
+
+
