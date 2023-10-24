@@ -1,4 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
+import Highcharts from 'highcharts'
 
 // Connects to data-controller="highchart"
 export default class extends Controller {
@@ -6,7 +7,6 @@ export default class extends Controller {
   connect() {
     let encodedData = this.jsonTarget.dataset.encoded
     let jsonData = atob(encodedData)
-    console.log(jsonData)
     let chartData = JSON.parse(jsonData)
     let tfid = this.jsonTarget.dataset.tfid
     Highcharts.chart(tfid, chartData)

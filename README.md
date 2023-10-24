@@ -1,26 +1,26 @@
 # UI Builder
 
-A Productivity-First UI Builder for Rails 
+A High Productivity Stateful Server Rendered UI Framework for Rails
 
 ## Installation
 
-TODO: Replace `UPDATE_WITH_YOUR_GEM_NAME_PRIOR_TO_RELEASE_TO_RUBYGEMS_ORG` with your gem name right after releasing it to RubyGems.org. Please do not do it earlier due to security reasons. Alternatively, replace this section with instructions to install your gem from git if you don't plan to release to RubyGems.org.
+### Add Gem to Gemfile
 
-Install the gem and add to the application's Gemfile by executing:
+* Edit `Gemfile`
 
-    $ bundle add UPDATE_WITH_YOUR_GEM_NAME_PRIOR_TO_RELEASE_TO_RUBYGEMS_ORG
-
-If bundler is not being used to manage dependencies, install the gem by executing:
-
-    $ gem install UPDATE_WITH_YOUR_GEM_NAME_PRIOR_TO_RELEASE_TO_RUBYGEMS_ORG
-
-## Usage
-
-## Post Install Configuration
-
-### Add gem path to content Tailwind watches
-
+```ruby
+gem 'ui_builder'
 ```
+
+```bash
+bundle install
+```
+
+### Configure Tailwind to Include Gem Views
+
+* Edit `/app/config/tailwind.config.js`
+
+```javascript
 const execSync = require('child_process').execSync;
 const ui_builder_path = execSync('bundle show ui_builder', { encoding: 'utf-8' });
 
@@ -29,6 +29,24 @@ module.exports = {
   content: [
     ui_builder_path.trim() + '/app/views/**/*.slim',
   ],
+```
+
+### Install Javascript
+
+```bash
+rails g ui_builder:install
+```
+
+Update `/app/javascript/application.js` 
+
+```javascript
+import UIBuilderListeners from './ui_builder_listeners'
+
+(function () {
+  window.Highcharts = Highcharts
+  UIBuilderListeners.rememberScrollPositionOnTurboLoad()
+  UIBuilderListeners.morphTurboFrameRenders()
+})();
 ```
 
 ## Development
